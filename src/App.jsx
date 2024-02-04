@@ -10,7 +10,9 @@ const initialState = {
   questions: [],
   // loading, error, ready, active, finished
   status: "loading",
-  index: 0
+  index: 0,
+  answer: null,
+  points: 0
 }
 
 function reducer(state, action){
@@ -21,6 +23,13 @@ function reducer(state, action){
       return {...state, status: "error"}
     case "active":
       return {...state, status: "start"}
+    case "newAnswer":
+      const question = state.questions.at(state.index)
+      return {
+        ...state,
+         answer: action.payload,
+         points: action.payload === question.correctOption  ? state.points + question.points : state.points
+        }
     default:
       throw new Error("Error")
   }
@@ -28,7 +37,7 @@ function reducer(state, action){
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState)
-  const {questions, status, index} = state
+  const {questions, status, index, answer} = state
   const numQuestions = questions.length
   useEffect(()=>{
     fetch('http://localhost:8000/questions')
@@ -43,7 +52,7 @@ function App() {
       {status === "loading" && <Loader />}
       {status === "error" && <Error />}
       {status === "ready" && <StartScreen dispatch={dispatch} numQuestions={numQuestions} />}
-      {status === "start" && <Question question={questions[index]}/>}
+      {status === "start" && <Question dispatch={dispatch} answer={answer} question={questions[index]}/>}
     </MainApp>  
   </div>
 }
