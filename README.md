@@ -21,8 +21,7 @@ This project is a React-based quiz application that allows users to take quizzes
 ## Project Structure
 
 - **src/components:** Contains reusable React components used throughout the application.
-- **src/hooks:** Houses custom hooks, including state management and side effect hooks.
-- **src/utils:** Includes utility functions for handling API requests and data manipulation.
+- **data/questions.json:** Used as a Fake API
 
 ## How to Run
 
@@ -41,5 +40,3 @@ This project is a React-based quiz application that allows users to take quizzes
 ## Learning Summary
 
 Throughout this project, I gained a deeper understanding of state management in React, especially when dealing with complex state transitions. Additionally, I honed my skills in handling asynchronous operations and side effects effectively using hooks like `useEffect`.
-
-For a more detailed comparison between `useState` and `useReducer`, refer to the section summary provided in the course materials.
