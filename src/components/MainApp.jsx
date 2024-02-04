@@ -2,9 +2,7 @@ import React from 'react'
 
 function MainApp({children}) {
   return (
-    <main className='main'>
-        {children}
-    </main>
+    <main className='main'>{children}</main>
   )
 }
 
